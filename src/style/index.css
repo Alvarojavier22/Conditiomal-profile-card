@@ -100,3 +100,9 @@
   border: none;
   border-radius: 0 0 3px 0;
 }
+
+.placeholder {
+  color: gray;
+  font-size: 0.7em;
+  font-style: italic;
+}

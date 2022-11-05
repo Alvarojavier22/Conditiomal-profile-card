@@ -35,9 +35,11 @@ function render(variables = {}) {
   document.querySelector("#widget_content").innerHTML = `<div class="widget">
             ${cover}
           <img src="${variables.avatarURL}" class="photo" />
-          <h1>${variables.name || ""} ${variables.lastname || ""}</h1>
-          <h2>${variables.role || ""}</h2>
-          <h3>${variables.city || ""} ${variables.country || ""}</h3>
+          <h1>${variables.name || placeholder("Name")} ${variables.lastname ||
+    placeholder("Last name")}</h1>
+          <h2>${variables.role || placeholder("Role")}</h2>
+          <h3>${variables.city || placeholder("City,")} ${variables.country ||
+    placeholder("Country")}</h3>
           <ul class="${variables.socialMediaPosition}">
             <li><a href="https://twitter.com/${variables.twitter ||
               ""}"><i class="bi bi-twitter"></i></a></li>
@@ -52,6 +54,9 @@ function render(variables = {}) {
     `;
 }
 
+function placeholder(text) {
+  return `<span class="placeholder">${text}</span>`;
+}
 /**
  * Don't change any of the lines below, here is where we do the logic for the dropdowns
  */
@@ -67,7 +72,7 @@ window.onload = function() {
     socialMediaPosition: "position-left",
     // social media usernames
     twitter: null,
-    github: "alesanchezr",
+    github: null,
     linkedin: null,
     instagram: null,
     name: null,
