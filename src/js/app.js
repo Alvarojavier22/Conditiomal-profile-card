@@ -40,18 +40,22 @@ function render(variables = {}) {
           <h2>${variables.role || placeholder("Role")}</h2>
           <h3>${variables.city || placeholder("City,")} ${variables.country ||
     placeholder("Country")}</h3>
-          <ul class="${variables.socialMediaPosition}">
-            <li><a href="https://twitter.com/${variables.twitter ||
-              ""}"><i class="bi bi-twitter"></i></a></li>
-            <li><a href="https://github.com/${variables.github ||
-              ""}"><i class="bi bi-github"></i></a></li>
-            <li><a href="https://linkedin.com/${variables.linkedin ||
-              ""}"><i class="bi bi-linkedin"></i></a></li>
-            <li><a href="https://instagram.com/${variables.instagram ||
-              ""}"><i class="bi bi-instagram"></i></a></li>
-          </ul>
+          <ul class="${variables.socialMediaPosition}">${getSocial(
+    variables
+  )}</ul>
         </div>
     `;
+}
+
+function getSocial(variables) {
+  let socialList = "";
+  let socialNetworks = ["twitter", "github", "linkedin", "instagram"];
+  socialNetworks.forEach(social => {
+    if (variables[social]) {
+      socialList += `<li><a href="https://${social}.com/${variables[social]}"><i class="bi bi-${social}"></i></a></li>`;
+    }
+  });
+  return socialList;
 }
 
 function placeholder(text) {
